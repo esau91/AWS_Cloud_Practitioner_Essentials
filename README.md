@@ -1,6 +1,6 @@
 # AWS_Cloud_Practitioner_Essentials
 
-This is a brief post of the key concepts and services from the course https://www.aws.training/Details/eLearning?id=60697 that AWS offers for free in its learning platform that help me the most to get certified. Baisically I took these notes from the course and make this notes and studied them to take the certification. 
+This is a brief post of the key concepts and services from the course https://www.aws.training/Details/eLearning?id=60697 that AWS offers for free in its learning platform, that help me the most to get certified. Baisically I took these notes from the course and studied them to take the certification. 
 
 ## Module 1 - Introduction to AWS
 - Cloud Computing: The on-demand delivery of IT resources over the internet with pay-as-you-go pricing.
