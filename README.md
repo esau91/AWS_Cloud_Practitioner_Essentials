@@ -98,16 +98,40 @@ This is a brief post of the key concepts and services from the course https://ww
 - Edge Locations: is a site that Amazon-CloudFront uses to store cached copies of your content to your customer for faster delivery.
 
 - How to Provision AWS Resources
-  1. AWS Managment Console
-  2. AWS Command Line Interface (CLI)
-  3. Software Development Kits (SDK's)
-  4. AWS Elastic Beanstalk: you provide code and configuration settings, and Elastic Beanstalk deploys the resources necessary to perform the following tasks:
-     - Adjust Capacity
-     - Load Balancing
-     - Automatic Scaling
-     - Application Health Monitoring
-  5. AWS Cloud Formation: you can treat your infrastructure as code, AWS Cloud Formation provisions you resources in a safe, repeatable manner, enabling you to frequently build your infrastructure and applications without having to perform manual actions or write custom scripts, it determines the rigth operations to perform when managing your stack and rolls back changes automatically if it detects errors.
+1. AWS Managment Console
+2. AWS Command Line Interface (CLI)
+3. Software Development Kits (SDK's)
+4. AWS Elastic Beanstalk: you provide code and configuration settings, and Elastic Beanstalk deploys the resources necessary to perform the following tasks:
+   - Adjust Capacity
+   - Load Balancing
+   - Automatic Scaling
+   - Application Health Monitoring
+5. AWS Cloud Formation: you can treat your infrastructure as code, AWS Cloud Formation provisions you resources in a safe, repeatable manner, enabling you to frequently build your infrastructure and applications without having to perform manual actions or write custom scripts, it determines the rigth operations to perform when managing your stack and rolls back changes automatically if it detects errors.
+
+
 ## Module 4 - Networking
+- Connectivity to AWS
+1. Amazon Virtual Private Network (VPC): enables you to provision an isolated section of the AWS Cloud within a VPC, you can organize your resources into subnets. A subnet is a section of a VPC that can contain resources such as Amazon EC2 instances. 
+2. Internet Gateway: is a connection between a VPC and th internet.
+3. Virtual Private Gateway: to access private resources in a VPC, you can use a virtual private gateway. Enables you to establish a virtual private network (VPN) connection between your VPC and a private network.
+4. AWS Direct Connection: enables you to establish a dedicated private connection between your datacenter and a VPC. This connection helps you to reduce network costs and increase the amount of bandwidth.
+- Subnets and Network Access Control Lists
+  - Network Traffic in a VPC: the VPC component that checks packet permissions for subnets is a network access control list (ACL).
+  - Network Access Control Lists (ACLs): vistual firewall that controls inbound and outbound traffic at the subnet level.
+    - Each AWS account includes a default network ACL.
+    - By default, your account's default network ACL allows all inbound and outbound traffic.
+    - All ACL's have an explicit deny rule. This rule ensures that if a packet dosen't match any of the other rules in the list, the packet is denied.
+  - Stateless Packet Filtering: Network ACL's perfomr stateless packet filtering. They remember nothing and checks packets that cross the subnet boarder each way: inbound and outbound.
+    - The VPC component that checks packet permissions for an Amazon EC2 instance is a security group.
+  - Security Groups: is a virtual firewall that controls inbound and outbound traffic for an Amazon EC2 instance. By default a security group denies all inbound traffic and allows all outbound traffic. You can add cutom rules to configure which traffic to allow or deny.
+    - If you have multiple Amazon EC2 instances within a subnet, you can associate the same security group or use different security groups for each instance.
+  - Stateful Packet Filtering: security groups perform stateful packet filtering. They remember previous decisions made for incoming packets.
+- Global Networking
+  - Domain Name Systems (DNS): DNS resolution is the process of translating a domain name to IP address
+  - Amazon Route 53: is a DNS web service, connects users requests to infrastructure running in AWS. It can route users to infrastrucutre outside of AWS.
+  
+  **You can register new domain names directly in Rout53**
+  
 ## Module 5 - Storage and Databases
 ## Module 6 - Security
 ## Module 7 - Monitoring and Analytics
