@@ -89,6 +89,24 @@ This is a brief post of the key concepts and services from the course https://ww
 
 
 ## Module 3 - Global Infrasctructure and Reliability
+- Global Infrastructure: When determining the right region for your service, data, and applications, considere the following four business factores:
+  1. Compliance with data governance and legal requirements.
+  2. Proximity to your customers.
+  3. Available services within a Region.
+  4. Pricing.
+  - Availability Zones: is a single data center or a group of datacenters within a region.
+- Edge Locations: is a site that Amazon-CloudFront uses to store cached copies of your content to your customer for faster delivery.
+
+- How to Provision AWS Resources
+  1. AWS Managment Console
+  2. AWS Command Line Interface (CLI)
+  3. Software Development Kits (SDK's)
+  4. AWS Elastic Beanstalk: you provide code and configuration settings, and Elastic Beanstalk deploys the resources necessary to perform the following tasks:
+     - Adjust Capacity
+     - Load Balancing
+     - Automatic Scaling
+     - Application Health Monitoring
+  5. AWS Cloud Formation: you can treat your infrastructure as code, AWS Cloud Formation provisions you resources in a safe, repeatable manner, enabling you to frequently build your infrastructure and applications without having to perform manual actions or write custom scripts, it determines the rigth operations to perform when managing your stack and rolls back changes automatically if it detects errors.
 ## Module 4 - Networking
 ## Module 5 - Storage and Databases
 ## Module 6 - Security
