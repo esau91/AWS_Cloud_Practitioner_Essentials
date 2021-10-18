@@ -127,13 +127,160 @@ This is a brief post of the key concepts and services from the course https://ww
     - If you have multiple Amazon EC2 instances within a subnet, you can associate the same security group or use different security groups for each instance.
   - Stateful Packet Filtering: security groups perform stateful packet filtering. They remember previous decisions made for incoming packets.
 - Global Networking
-  - Domain Name Systems (DNS): DNS resolution is the process of translating a domain name to IP address
+  - Domain Name Systems (DNS): DNS resolution is the process of translating a domain name to IP address.
   - Amazon Route 53: is a DNS web service, connects users requests to infrastructure running in AWS. It can route users to infrastrucutre outside of AWS.
   
   **You can register new domain names directly in Rout53**
   
 ## Module 5 - Storage and Databases
+- Instance Stores and Amazon Elastic Block Storage (EBS)
+
+1. An instance store provides temporary block-level storage for an EC2 instance. Is a disk storage that is physically attached to the host computer with the following characteristics:
+    1. HDD options
+    2. Solid state
+    3. Size up to 16 TiB
+
+2. Amazon Elastic Block Storage (EBS): provides block-level storage volumes that you can use with EC2 instances. Because EBS volumes are for data that needs to persist, it's importatnt to backup the data (snapshots).
+
+    **EBS snapshot is an incremental backup**
+
+3. Amazon Simple Storage Service (S3)
+  
+   **When you modify a file in block storage, only the pieces that are changed are updated. When a file in object storage is modified, the entire onject is updated**
+  
+   **Nine 9's of durability**
+ 
+   S3 provides object-level storage, offers unlimited storage space, the maximum file size for an object is 5TB.
+   - You can set permissions to control visibility and access to it.
+   - You can also use versioning feature to track changes to your objects over time.
+   - S3 storage classes:
+    
+     With S3 you only pay for what you use, you can choose from a range of storage classes to select a fit, you will considere two factors:
+     - How often you plan to retrieve your data.
+     - How available you need your data to be.
+     
+       1. S3 standard: provides high availability for objects, it has a higher cost.
+          - Designed for frequently accessed data.
+          - Store data in a minimum of three availability Zones.
+       2. S3 Zone-Infrequent Access (Zone-IA): ideal for infrequently accessed but requires high availability when needed. Same level of availability as S3 standard but with lower storage price.
+          - Ideal for infrequently accessed data.
+          - Similar to S3 standard but lower storage price and higher retrieval price.
+       3. S3 One Zone-Infrequent Access (One Zone-IA)
+          - Store data in a single availability zone.
+          - Lower storage price than S3 Standard-IA.
+       4. S3 Intelligent-Tiering:
+          - Ideal for data with unknown or changing access patterns.
+          - Requires a small monthly monitoring and automation fee per object.
+       5. S3 Glacier:
+          - Low-cost storage designed for data-archiving.
+          - Able to retrieve objects within a few minutes to hours.
+       6. S3 Glacier Deep Archive:
+          - Lowest-cost object storage class, ideal for archiving.
+          - Able to retrieve objects within 12 hours.
+          
+4. Amazon Elastic File System (EFS)
+   - File Storage, multiple clients can access data thta is stored in shared file folders. In this approach, a storage server uses **block sotrage** with a local file system to organize files.
+     Compared to block storage and objects storage, file storage is ideal for use cases in which a large number of services and resources need to access the same data at the same time.
+
+   - Amazon EFS is a scalable file system used with AWS Cloud Services and On-premise resources.
+**[REFERENCE 1]**
+5. Amazon Relational Database Service (RDS)
+   - RDS enables you to run relational databases in the AWS Cloud Managed services that automates tasks such as: 
+     - Hardware provisioning
+     - Database setup
+     - Patching
+     - Backups
+  
+   - Database Engines:
+     - Postgre SQL
+     - MySQL
+     - Maria DB
+     - Oracle
+     - Microsft SQL Server
+     - Amazon Aurora:
+       - Compatible with MySQL and PostgreSQL. 
+       - Five times faster that MySQL and three times faster than PostgreSQL. 
+       - Reduce unnecesary I/O operations. 
+       - Replicates six copies of your data across three availability zones. 
+       - Continuosly backs up your data.
+6. Amazon Dynamo DB
+   - Nonrelational databases: One type of structural approach for nonrelational databases is key-value pairs. With key-value pairs, data is organized into items (keys), and items have attributes (values). You can add or remove attributes from items in the table at any time. Not every item has to have the same attributes.
+   - Dynamo DB is a key-value database. It delivers single-digit millisecond performance at any scale.
+     - Is serverless, which means that you do not have to provision, patch or manage servers.
+     - You also do not have to install, mantain or operate software.
+     - Automatically scales and mantain performance.
+     - Suitable choice for use cases that require high performance while scaling.
+7. Amazon Redshift
+   - Datawarehousing that you can use for big data analytics. It offers the ability to collect data from many sources and helps you to understand relationships, and trends across your data.
+8. AWS Database Migration Service
+   - Enables you to migrate relational databases, nonrelational databases, and others types of data store.
+     - The source and target database can be of the same type or different types.
+     - During the migration, your source database remains operational.
+     - Other uses cases:
+       - Development and test database migration.
+       - Database consolidation.
+       - Continuos replication.
+9. Additional database services
+   - Amazon DocumentDB: a document database that support MongoDB workloads.
+   - Amazon Neptune: a graph database service. you can use it to build and run applications that work with highly connected datasets, such as recommendations engines, fraud detection, and knowledge graphs.
+   - Amazon Quantum Ledger Database (QLDB): you can use it to review a complete history of all the changes that have been made to your application data.
+   - Amazon Managed Blockchain: you can use it to create and manage blockchain networks woth open-source frameworks.
+   - Amazon Elastic Cache: add caching layers on top of your databases to help improve the read times of common requests. Supports Redis and MemCached.
+   - Aamzon DynamoDB Accelerator (DAX): is an in-memory cache for DynamoDB, it helps to improve response times from single-digit millisecond to microseconds.
+
 ## Module 6 - Security
+- Shared Responsability Model.
+**[REFERENCE 2]**
+- User permissions and access.
+1. AWS Identity and Access Management (IAM): Gives you the flexibility to configure access based on you company's specific operational and security needs.
+   - IAM user, groups, and roles.
+   - IAM policies.
+   - Multi-factor authentication.
+2. Root user: when you create an AWS account, you begin with an identity known as the root user, it has access to all the AWS services and resources in the account.
+3. IAM users: is an identity that you create in AWS, it represents the person or application that interacts with AWS services and resources. It consists of a name and credentials.
+   **By default when you create a new IAM user, it has no permissions associated with it.**
+4. IAM policies: is a document that allows or denies permissions to AWS services ans resources.
+5. IAM group: is a collection of IAM users. When you assign an IAM policy to a group, all users in the group are granted permissions specified by the policy.
+6. IAM roles: ia an identity that you can assume to gain temporary access to permissions.
+   **Before an IAM user, application, or service can assume an IAM role, they must be granted permissions to switch to the role.**
+- AWS Organizations
+  - You can use it to consolidate multiple AWS accounts and manage within a central location.
+  - You can centrally control permissions for the accounts in your organization by using service control policies (SCPs).
+  - Organizations Units (OUs)
+    - You can group accounts into organizations units to make it easier to manage accounts with similar business or security requirements.
+  **Note 1: You can apply service control policies (SCPs) to the organization root, an individual member account, or an OU. An SCP affects all IAM users, groups, and roles within account, including the root user.**
+  **Note 2: You can apply IAM policies to IAM users, groups, or roles. You cannot apply an IAM policy to the AWS account root user.**
+- Compliance
+  - AWS Artifacts: Provides on-demand access to AWS-security and comppliance reports and select online agreements.
+    - AWS Artifacts Agreement: you can review, accept, and manage agreements for an individual account and for all your accounts in AWS Organizations.
+    - AWS Artifacts Reports: provide compliance reports from third.party auditors.
+  - Customer Compliance Center
+    - Contains resources to help you learn more about AWS compliance.
+- Denial-of-service attacks
+  Deliberate attemp to make a website or application unavailable to users.
+  
+  - AWS Shield: a service that protects applications against DDoS attacks.
+    - Standard: automatically protects all AWS customers at no cost, protects your AWS resources from the most common, frequently occurring types of DDoS atacks.
+    - Advanced: a paid service that provides detailed attacks diagnostics and the ability to detect and mitigate sophisticated DDoS attacks-
+- Additonal Security Services
+1. AWS Key Managment Service (KMS)
+   - Enables you to perform encryption operations through the use of cryptographic keys. 
+   - You can use KMS to create, manage and use cryptographic keys.
+   - You can also control the use of keys across wide range of services and in your applications.
+2. AWS WAF
+   - A web application firewall that let's you monitor network requests that come into your web applications
+3. Amazon Inspector
+   - Helps to improve security and compliance of applications by running automated security assessments. 
+   - It checks applications for security vulnerabilities and deviations from security best practices.
+   - Provides you with a list of security findings prioritized by severity level, including a detailed description of each security issue and a recommendation for how to fix it.   
+4. Amazon Guard Duty
+   - A service that provides intelligent threat detection for your AWS infrastructure and resources. Identifies threats by continuosly monitoring the network activity and account behavior within your AWS environment.
+**Note 1: Identity federation allows your users to use one login (corporate & AWS)**
+  
+  
+  
+  
+  
 ## Module 7 - Monitoring and Analytics
 ## Module 8 - Pricing and Support
 ## Module 9 - Migration and Innovation
