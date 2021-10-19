@@ -238,18 +238,25 @@ This is a brief post of the key concepts and services from the course https://ww
    - Multi-factor authentication.
 2. Root user: when you create an AWS account, you begin with an identity known as the root user, it has access to all the AWS services and resources in the account.
 3. IAM users: is an identity that you create in AWS, it represents the person or application that interacts with AWS services and resources. It consists of a name and credentials.
+   
    **By default when you create a new IAM user, it has no permissions associated with it.**
+   
 4. IAM policies: is a document that allows or denies permissions to AWS services ans resources.
 5. IAM group: is a collection of IAM users. When you assign an IAM policy to a group, all users in the group are granted permissions specified by the policy.
 6. IAM roles: ia an identity that you can assume to gain temporary access to permissions.
+   
    **Before an IAM user, application, or service can assume an IAM role, they must be granted permissions to switch to the role.**
+   
 - AWS Organizations
   - You can use it to consolidate multiple AWS accounts and manage within a central location.
   - You can centrally control permissions for the accounts in your organization by using service control policies (SCPs).
   - Organizations Units (OUs)
     - You can group accounts into organizations units to make it easier to manage accounts with similar business or security requirements.
+  
   **Note 1: You can apply service control policies (SCPs) to the organization root, an individual member account, or an OU. An SCP affects all IAM users, groups, and roles within account, including the root user.**
+  
   **Note 2: You can apply IAM policies to IAM users, groups, or roles. You cannot apply an IAM policy to the AWS account root user.**
+  
 - Compliance
   - AWS Artifacts: Provides on-demand access to AWS-security and comppliance reports and select online agreements.
     - AWS Artifacts Agreement: you can review, accept, and manage agreements for an individual account and for all your accounts in AWS Organizations.
@@ -275,14 +282,161 @@ This is a brief post of the key concepts and services from the course https://ww
    - Provides you with a list of security findings prioritized by severity level, including a detailed description of each security issue and a recommendation for how to fix it.   
 4. Amazon Guard Duty
    - A service that provides intelligent threat detection for your AWS infrastructure and resources. Identifies threats by continuosly monitoring the network activity and account behavior within your AWS environment.
-**Note 1: Identity federation allows your users to use one login (corporate & AWS)**
-  
-  
-  
-  
+
+**Note 1: Identity federation allows your users to use one login (corporate & AWS).**
   
 ## Module 7 - Monitoring and Analytics
+- Amazon CloudWatch
+  A web service that enables you to monitore and manage various metrics and configure alarm actions based on data from those metrics.
+  
+  - CloudWatch Alarms: you can create thatautomatically perform actions if the value of your metric has gone above or below a predifined threshold.
+  - CloudWatch Dashboard: enables you to access all the metrics for your resources from a single location.
+  
+- AWS CloudTrail
+  - Records API calls for your account. The record information includes the indentity of the API caller, the time, source IP address, and more.
+  
+  **Events are tiplically updated in CloudTrail within 15 minutes after an API call.**
+  
+  - CloudTrail Insights: this optional feature allows CloudTrail to automatically detect unusual API activities.
+  
+  **You can filter logs to assist with operational analysis and troubleshooting.**
+
+- AWS Trusted Advisor
+  
+  A web service that inspects your AWS environment and provides real-time recommendations in accordance with AWS best practices: 
+  - Cost optimization
+  - Performance
+  - Security
+  - Fault tolerance
+  - Service limits
+  1. Green check indicates the number of items for which it detected no problems.
+  2. Orange triangle represents the number of recommended investigations.
+  3. Red circle represents the number of recommended actions.
+
 ## Module 8 - Pricing and Support
+- AWS Free Tier
+  - Always free
+  - 12 months free
+  - Trials
+  
+  **Lambda allows 1 million free invocations per month**
+  
+  **S3 is free for 12 months for up to 5 GB of standard storage.**
+  
+  **Lightsail offers 1 month trial of up to 750 hours of usage.**
+  
+- AWS Pricing Concepts
+  - Pay for what you use
+  - Pay less when you reserve
+  - Pay less with volume-based discounts when you use more
+  - AWS Pricing Calculator: lets you explore AWS services and create and estimate for the cost of your use case.
+  **Lambda allows 1 million free requests and up to 3.2 million seconds of compute time per month.**
+  
+- AWS Billing Dashboard
+  - Compare current month-to-date balance with previous month, and get a forcast of the next month based on current cost.
+  - View month-to-date expense by service.
+  - View free tier usage by servcice.
+  - View free tier usage by service.
+  - Access cost explorer and create budgets.
+  - Purchase and manage saving plans.
+
+- Consolidate Billing
+  - Simplifies billing process.
+  - Share savings accross accounts.
+  - Free feature.
+  
+  **Default maximum number of accounts allowed for an organization is 4.**
+  
+  **Ability to share bulk discount pricing, saving plans and reserved instances.**
+  
+- AWS Budgets
+  - You can create budgets to plan your service usage, service cost, and instance reservation.
+  - Updates three times a day.
+  - You can also set custom alerts when your usage exceeds.
+
+- AWS Cost Explorer
+  - A tool that enables you to visualize, understand, and manage you AWS cost and usage over time.
+  - Default report for your top five cost-accruing AWS services.
+
+- AWS Support Plans
+  1. Basic: 
+     - Free.
+     - Includes access to whitepapers.
+     - Documentation.
+     - Support communities.
+     - Limit selection of AWS trusted Advisor checks.
+     - AWS personal health dashboard.
+  2. Developer: 
+     - Best practices guidance.
+     - Client-side diagnostic-tools.
+     - Bulding-block architecture support.
+  4. Business:
+     - USe case guidance to identify AWS offerings, features and services.
+     - All AWS trusted advisor checks.
+     - Limited support for third-party software.
+  6. Enterprise:
+     - Application architecture guidance.
+     - Infrastructure event managment.
+     - Technical account manager (TAM).
+
+  **TAM: your primary point of contact of AWS. Provide guidance, architectureal reviews, and ongoing communication with your company as you plan, deploy, and optimize your applications.**
+  
+  **These plans have pay-by-the-month pricing and require no long-term contracts.**
+
+- AWS Marketplace
+  - A digital catalog that includes thousands of software listings from independent software vendors. You can find, test, and buy software that runs on AWS.
+  - categories:
+    - Business applications.
+    - IoT
+    - Data & Analytics
+    - ML
+    - DevOps
+    - Migration
+    - Infrastrucutre Software
+    - Security
+  
 ## Module 9 - Migration and Innovation
+- AWS Cloud Adoption Framework (CAF)
+  Organize guidance into six areas of focus, called perspectives.
+  - Business:
+    1. Business: ensures that IT aligns with business needs.
+    2. People: supports development of an organizations-wide change managment strategy for successful cloud adoption.
+    3. Governance: focuses on the skills and processes to align IT strategy with business strategy.
+
+  - Technical:
+    1. Platform
+    2. Security
+    3. Operations
+
+- Migration strategies
+  1. Rehosting: also know as 'lift-and-shift' involves moving applications without changes.
+  2. Replatforming: also know as 'lift, tinker, and shift', involves making a few cloud optimizations to realize a tangible benefit. Optimization is achived without changing the core architecture of the application.
+  3. Refactoring/Re-architecting: involves reimagining how an application is architected and developed by using cloud-native features.
+  4. Repurchasing: involves moving from a traditional license to a Software-as-a-Service model.
+  5. Retaining: consist of keeping applications that are critical for the business in the source environment.
+  6. Retiring: removing applications that are no longer needed.
+
+- AWS Snow Family
+  A collection of physical devices that help to physically transport up to exabytes of data into and out of AWS.
+  - Snowcone: small, rugger, and secure edge computing and data transfer device. 2 CPUs, 4 GB of memory and 8 TB of usable storage.
+  - Snowball: 
+    - Edge Storage optimized: suited for large-sacle data migrations. 80 TB of hard disk drive, 40 vCPUs, 80 GiB of memory.
+    - Edge Compute optimized: pwerfull computing resources. Storage 42 TB, 52 vCPUs, 208 GiB of memory.
+  - Snowmobile: an exabyte-scale data transfer service used to move large amounts of data to AWS up to 100 PB.
+
 ## Module 10 - The Cloud Journey
-## Module 11 - AWS Certified Cloud Practitioner Basics
+- AWS Well-Architected Framework
+  Helps you to understand how to design and operate reliable, secure, efficient, and cost-effective systems in the AWS Cloud. It provides you a way for you to consistently measure your architecture against best practices and design principles and identity areas of improvement.
+  - Operational excellence
+  - Security
+  - Reliability
+  - Performance efficiency
+  - Cost optimization
+
+- Benefits od the AWS Clud
+  1. Trade upfront expense for variable expense.
+  2. Benefit from massive economics of scale.
+  3. Stop guessing capacity.
+  4. Incrase speed and agility.
+  5. Stop spending money running and maintaining data centers.
+  6. Go global in minutes.
