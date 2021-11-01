@@ -89,7 +89,7 @@ This is a brief post of the key concepts and services from the course https://ww
 
 
 ## Module 3 - Global Infrastructure and Reliability
-- Global Infrastructure: When determining the right region for your service, data, and applications, consider the following four business factores:
+- When determining the right region for your service, data, and applications, consider the following four business factores:
   1. Compliance with data governance and legal requirements.
   2. Proximity to your customers.
   3. Available services within a Region.
